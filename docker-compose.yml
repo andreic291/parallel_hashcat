@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  hashcat-single:
+    build: .
+    container_name: hashcat-single
+    restart: unless-stopped
+    volumes:
+      - ./results:/hashcat-test/results
+      - ./scripts:/hashcat-test/scripts
+      - ./wordlists:/hashcat-test/wordlists
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '1.0'
+          memory: 1G
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null
+
+  hashcat-parallel-1:
+    build: .
+    container_name: hashcat-parallel-1
+    restart: unless-stopped
+    volumes:
+      - ./results:/hashcat-test/results
+      - ./scripts:/hashcat-test/scripts
+      - ./wordlists:/hashcat-test/wordlists
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '1.0'
+          memory: 1G
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null
+
+  hashcat-parallel-2:
+    build: .
+    container_name: hashcat-parallel-2
+    restart: unless-stopped
+    volumes:
+      - ./results:/hashcat-test/results
+      - ./scripts:/hashcat-test/scripts
+      - ./wordlists:/hashcat-test/wordlists
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2G
+        reservations:
+          cpus: '1.0'
+          memory: 1G
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null 
